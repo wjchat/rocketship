@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.width = window.innerWidth * .7;
 
 //COLORS/////////////////////
 let orange = [255, 139, 12];
@@ -17,6 +17,7 @@ let flameColors = [orange, brick, red, black];
 
 let Rocket = new Image();
 Rocket.src = './rocket.svg';
+
 Rocket.scale = .7;
 Rocket.height = Rocket.height * Rocket.scale;
 Rocket.width = Rocket.width * Rocket.scale;
@@ -28,10 +29,6 @@ let y = (canvas.height) - (Rocket.height) - 200;
 let dx = 1;
 let dxx = -.01;
 let origX = Math.floor((canvas.width / 2) - (Rocket.width / 2));
-console.log(origX);
-
-
-let canswitch = true;
 
 function moveRocket() {
 
@@ -42,11 +39,16 @@ function moveRocket() {
         canswitch = false;
         setTimeout(function () {
             canswitch = true;
-            console.log('switched');
         }, 100)
     }
+
     c.drawImage(Rocket, x, y, Rocket.width, Rocket.height);
 }
+
+
+
+let canswitch = true;
+
 
 //STARS/////////////////////////
 class Star {
@@ -90,8 +92,6 @@ function makeStars() {
     }
 }
 ////////////////////////////////////
-
-
 
 
 //FLAMES//////////////////////////
@@ -148,6 +148,9 @@ function makeFlames(){
 
 canvas.style.backgroundColor = 'rgba(8,8,8,1)';
 
+
+
+
 function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -155,10 +158,16 @@ function animate() {
     makeStars();
     makeFlames(); 
     moveRocket();
+    if(send === false){
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        return null;
+    }
     window.requestAnimationFrame(animate);
 
 }
 
-
-
-animate();
+let send = false;
+document.querySelector('button').onclick = function(){
+    send = !send;
+    animate();
+}
