@@ -1,7 +1,7 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 canvas.height = window.innerHeight;
-canvas.width = window.innerWidth * .7;
+canvas.width = window.innerWidth;
 
 //COLORS/////////////////////
 let orange = [255, 139, 12];
@@ -40,6 +40,9 @@ function moveRocket() {
         setTimeout(function () {
             canswitch = true;
         }, 100)
+    }
+    if(x > canvas.width - Rocket.width || x < 0){
+        dx = -dx;
     }
 
     c.drawImage(Rocket, x, y, Rocket.width, Rocket.height);
@@ -139,7 +142,7 @@ function makeFlames(){
     
     for(let each of flames){
         each.update();
-        if(each.o < 0){
+        if(each.o < 0 && each.y > canvas.height + 100){
             each = null;
         }
     }
@@ -165,9 +168,13 @@ function animate() {
     window.requestAnimationFrame(animate);
 
 }
-
-let send = false;
-document.querySelector('button').onclick = function(){
-    send = !send;
+let send = true
+window.onload = function(){
     animate();
 }
+
+//let send = false;
+//document.querySelector('button').onclick = function(){
+//    send = !send;
+//    animate();
+//}
