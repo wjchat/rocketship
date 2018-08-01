@@ -1,0 +1,44 @@
+body{
+    overflow: hidden; 
+} 
+
+div{
+    position: absolute;
+    z-index: 50;
+    top: 150px;
+    left: 26%;
+    -webkit-transition: .2s opacity ease-in-out 0s;
+    transition: .2s opacity ease-in-out 0s;
+}
+
+p{
+    font-size: 2rem; 
+    font-family: "Lucida Sans";
+    font-weight: bold;
+}
+span{
+    font-family: "Lucida Sans";
+    padding-left: 20px;
+}
+
+.intro{
+    opacity: 1;
+}
+
+.go-away{
+    opacity: 0;
+}
+
+.first{
+    color: white;
+    left: 5%;
+}
+
+.content > h1{
+    font-family: "Lucida Sans";
+    font-size: 2rem;
+}
+.content > p{
+    font-size: 1rem;
+}
+.content
